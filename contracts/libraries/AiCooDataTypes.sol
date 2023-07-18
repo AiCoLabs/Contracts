@@ -18,7 +18,6 @@ library AiCooDataTypes {
     }
 
     struct CreateNewCollectionData {
-        uint256 profileId;
         uint256 royalty;
         uint256 addressSalt;
         CollectionType collectionType;
@@ -35,7 +34,6 @@ library AiCooDataTypes {
 
     struct CreateNewNFTData {
         uint256 collectionId;
-        uint256 profileId;
         string nftInfoURI;
         uint256 derivedFrom;
         bytes derivedModuleData;
