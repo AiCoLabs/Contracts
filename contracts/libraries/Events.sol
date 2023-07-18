@@ -40,7 +40,7 @@ library Events {
         uint256 timestamp
     );
 
-    event OpTreeRoyaltyDataSet(
+    event AiCooRoyaltyDataSet(
         address indexed caller,
         address indexed royaltyAddr,
         uint32 indexed percentage,
@@ -50,8 +50,6 @@ library Events {
     event NewCollectionCreated(
         address indexed collectionOwner,
         uint256 indexed collectionId,
-        uint256 indexed profileId,
-        uint256 pubId,
         uint256 baseRoyalty,
         DataTypes.CollectionType collectionType,
         uint256 addressSalt,
@@ -80,19 +78,13 @@ library Events {
     event NewNFTCreated(
         uint256 indexed tokenId,
         uint256 indexed collectionId,
-        uint256 indexed profileId,
-        uint256 pubId,
         uint256 derivedFrom,
         string nftInfoURI
     );
 
     event BaseInitialized(string name, string symbol, uint256 timestamp);
 
-    event ModuleBaseConstructed(
-        address indexed lensHub,
-        address indexed opTreeHub,
-        uint256 timestamp
-    );
+    event ModuleBaseConstructed(address indexed aiCooHub, uint256 timestamp);
 
     event DerivedNFTInitialized(
         uint256 indexed collectionId,

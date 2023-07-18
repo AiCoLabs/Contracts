@@ -16,8 +16,6 @@ abstract contract AiCooStorage {
         address creator;
         address derivedNFTAddr;
         address derivedRuletModule;
-        uint256 profileId;
-        uint256 pubId;
     }
 
     mapping(address => bool) internal _derivedRuleModuleWhitelisted;

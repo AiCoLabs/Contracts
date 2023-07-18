@@ -20,8 +20,6 @@ interface IAiCooHub {
 
     function getDerivedNFTImpl() external view returns (address);
 
-    function setAiCooHubProfileId(uint256 aiCooHubProfileId) external;
-
     function setState(AiCooDataTypes.AiCooState newState) external;
 
     function setMaxRoyalty(uint256 maxRoyalty) external;
