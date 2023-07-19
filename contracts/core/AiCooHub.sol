@@ -173,11 +173,11 @@ contract AiCooHub is
             );
     }
 
-    function getCurrentSaltByAddress(
-        address creator
-    ) public view returns (uint256) {
-        return _addressSalt[creator];
-    }
+    // function getCurrentSaltByAddress(
+    //     address creator
+    // ) public view returns (uint256) {
+    //     return _addressSalt[creator];
+    // }
 
     /// ****************************
     /// *****INTERNAL FUNCTIONS*****
@@ -288,15 +288,12 @@ contract AiCooHub is
         uint256 collectionId,
         AiCooDataTypes.CreateNewCollectionData calldata vars
     ) internal returns (address) {
-        if (vars.addressSalt != _addressSalt[collectionOwner]) {
-            revert Errors.NotCorrectSalt();
-        }
-        _addressSalt[collectionOwner]++;
-        bytes32 salt = keccak256(abi.encode(collectionOwner, vars.addressSalt));
-        address derivedCollectionAddr = Clones.cloneDeterministic(
-            DERIVED_NFT_IMPL,
-            salt
-        );
+        // if (vars.addressSalt != _addressSalt[collectionOwner]) {
+        //     revert Errors.NotCorrectSalt();
+        // }
+        // _addressSalt[collectionOwner]++;
+        // bytes32 salt = keccak256(abi.encode(collectionOwner, vars.addressSalt));
+        address derivedCollectionAddr = Clones.clone(DERIVED_NFT_IMPL);
 
         IDerivedNFT(derivedCollectionAddr).initialize(
             collectionOwner,
@@ -351,7 +348,6 @@ contract AiCooHub is
             collectionId,
             vars.royalty,
             vars.collectionType,
-            _addressSalt[creator] - 1,
             derivedCollectionAddr,
             vars.collInfoURI,
             vars.derivedRuleModule,

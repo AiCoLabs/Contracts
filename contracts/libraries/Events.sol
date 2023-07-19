@@ -52,7 +52,6 @@ library Events {
         uint256 indexed collectionId,
         uint256 baseRoyalty,
         DataTypes.CollectionType collectionType,
-        uint256 addressSalt,
         address derivedCollectionAddr,
         string collInfoURI,
         address derivedRuleModule,
