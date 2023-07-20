@@ -23,17 +23,15 @@ contract AiCooHub is
     uint256 internal constant REVISION = 1;
 
     address internal immutable DERIVED_NFT_IMPL;
-    address internal immutable LENS_HUB_PROXY;
 
     modifier onlyGov() {
         _validateCallerIsGovernance();
         _;
     }
 
-    constructor(address derivedNFTImpl, address lensHubProxy) {
+    constructor(address derivedNFTImpl) {
         if (derivedNFTImpl == address(0)) revert Errors.InitParamsInvalid();
         DERIVED_NFT_IMPL = derivedNFTImpl;
-        LENS_HUB_PROXY = lensHubProxy;
     }
 
     function initialize(address newGovernance) external override initializer {
@@ -160,18 +158,18 @@ contract AiCooHub is
         return _balance[owner];
     }
 
-    function predictNFTAddress(
-        address creator,
-        uint256 addressSalt
-    ) public view returns (address) {
-        bytes32 salt = keccak256(abi.encode(creator, addressSalt));
-        return
-            Clones.predictDeterministicAddress(
-                DERIVED_NFT_IMPL,
-                salt,
-                address(this)
-            );
-    }
+    // function predictNFTAddress(
+    //     address creator,
+    //     uint256 addressSalt
+    // ) public view returns (address) {
+    //     bytes32 salt = keccak256(abi.encode(creator, addressSalt));
+    //     return
+    //         Clones.predictDeterministicAddress(
+    //             DERIVED_NFT_IMPL,
+    //             salt,
+    //             address(this)
+    //         );
+    // }
 
     // function getCurrentSaltByAddress(
     //     address creator
