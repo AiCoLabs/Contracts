@@ -29,5 +29,4 @@ abstract contract AiCooStorage {
     uint256 internal _collectionCounter;
     address internal _governance;
     address internal _emergencyAdmin;
-    //mapping(address => uint256) internal _addressSalt;
 }

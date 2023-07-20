@@ -158,25 +158,6 @@ contract AiCooHub is
         return _balance[owner];
     }
 
-    // function predictNFTAddress(
-    //     address creator,
-    //     uint256 addressSalt
-    // ) public view returns (address) {
-    //     bytes32 salt = keccak256(abi.encode(creator, addressSalt));
-    //     return
-    //         Clones.predictDeterministicAddress(
-    //             DERIVED_NFT_IMPL,
-    //             salt,
-    //             address(this)
-    //         );
-    // }
-
-    // function getCurrentSaltByAddress(
-    //     address creator
-    // ) public view returns (uint256) {
-    //     return _addressSalt[creator];
-    // }
-
     /// ****************************
     /// *****INTERNAL FUNCTIONS*****
     /// ****************************
@@ -286,11 +267,6 @@ contract AiCooHub is
         uint256 collectionId,
         AiCooDataTypes.CreateNewCollectionData calldata vars
     ) internal returns (address) {
-        // if (vars.addressSalt != _addressSalt[collectionOwner]) {
-        //     revert Errors.NotCorrectSalt();
-        // }
-        // _addressSalt[collectionOwner]++;
-        // bytes32 salt = keccak256(abi.encode(collectionOwner, vars.addressSalt));
         address derivedCollectionAddr = Clones.clone(DERIVED_NFT_IMPL);
 
         IDerivedNFT(derivedCollectionAddr).initialize(
