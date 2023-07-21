@@ -4,7 +4,6 @@ pragma solidity 0.8.18;
 
 library Errors {
     error EmergencyAdminJustCanPause();
-    error NotProfileOwner();
     error NotGovernanceOrEmergencyAdmin();
     error NotGovernance();
     error NotCollectionOwner();
@@ -17,7 +16,7 @@ library Errors {
     error NotOwnerOrApproved();
     error SignatureExpired();
     error SignatureInvalid();
-    error NotOpTreeHub();
+    error NotAiCooHub();
     error RoyaltyTooHigh();
     error DerivedRuleModuleNotWhitelisted();
     error FollowInvalid();
@@ -29,11 +28,11 @@ library Errors {
     error JustOwnerCanPublishRootNode();
     error ModuleDataMismatch();
     error MintLimitExceeded();
-    error EndTimeStampTooLarge();
     error MintExpired();
 
     error BurnExpiredOneWeek();
     error DerivedFromNFTNotExist();
     error NotInWhiteList();
-    error NotCorrectSalt();
+
+    error NotEnoughFunds();
 }

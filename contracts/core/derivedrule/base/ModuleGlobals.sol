@@ -120,7 +120,7 @@ contract ModuleGlobals is IModuleGlobals {
     }
 
     function _setTreasuryFee(uint16 newTreasuryFee) internal {
-        if (newTreasuryFee >= BPS_MAX / 2) revert Errors.InitParamsInvalid();
+        if (newTreasuryFee > BPS_MAX / 10) revert Errors.InitParamsInvalid();
         uint16 prevTreasuryFee = _treasuryFee;
         _treasuryFee = newTreasuryFee;
         emit Events.ModuleGlobalsTreasuryFeeSet(

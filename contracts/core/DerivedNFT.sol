@@ -59,7 +59,7 @@ contract DerivedNFT is RoyaltySplitter, DerivedNFTBase, Ownable, IDerivedNFT {
         uint256 derivedfrom,
         string calldata tokenURI
     ) external override returns (uint256) {
-        if (msg.sender != AICOOHUB) revert Errors.NotOpTreeHub();
+        if (msg.sender != AICOOHUB) revert Errors.NotAiCooHub();
         unchecked {
             uint256 tokenId = _tokenIdCounter++;
             _mint(to, tokenId);
@@ -90,7 +90,7 @@ contract DerivedNFT is RoyaltySplitter, DerivedNFTBase, Ownable, IDerivedNFT {
     }
 
     function burnByCollectionOwner(uint256 tokenId) external {
-        if (msg.sender != AICOOHUB) revert Errors.NotOpTreeHub();
+        if (msg.sender != AICOOHUB) revert Errors.NotAiCooHub();
         _burn(tokenId);
     }
 

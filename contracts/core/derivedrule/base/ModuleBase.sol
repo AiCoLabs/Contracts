@@ -9,7 +9,7 @@ abstract contract ModuleBase {
     address public immutable AICOOHUB;
 
     modifier onlyAiCooHub() {
-        if (msg.sender != AICOOHUB) revert Errors.NotOpTreeHub();
+        if (msg.sender != AICOOHUB) revert Errors.NotAiCooHub();
         _;
     }
 
