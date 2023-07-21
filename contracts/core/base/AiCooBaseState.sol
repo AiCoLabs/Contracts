@@ -11,6 +11,8 @@ abstract contract AiCooBaseState {
     address public _aiCooHubRoyaltyAddress;
     uint32 public _aiCooHubRoyaltyRercentage;
     uint32 public _maxRoyalty;
+    uint32 public _createCollectionFee;
+    address public _collectionFeeAddress;
 
     modifier whenNotPaused() {
         _validateNotPaused();
@@ -34,6 +36,30 @@ abstract contract AiCooBaseState {
             msg.sender,
             prevMaxRoyalty,
             _maxRoyalty,
+            block.timestamp
+        );
+    }
+
+    function _setCreateCollectionFee(uint256 newCreateCollectionFee) internal {
+        uint32 prevCreateCollectionFee = _createCollectionFee;
+        _createCollectionFee = uint32(newCreateCollectionFee);
+        emit Events.CreateCollectionFeeSet(
+            msg.sender,
+            prevCreateCollectionFee,
+            _createCollectionFee,
+            block.timestamp
+        );
+    }
+
+    function _setCollectionFeeAddress(
+        address newCollectionFeeAddress
+    ) internal {
+        address prevCollectionFeeAddress = _collectionFeeAddress;
+        _collectionFeeAddress = newCollectionFeeAddress;
+        emit Events.CollectionFeeAddressSet(
+            msg.sender,
+            prevCollectionFeeAddress,
+            _collectionFeeAddress,
             block.timestamp
         );
     }

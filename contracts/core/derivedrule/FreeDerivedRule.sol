@@ -40,7 +40,7 @@ contract FreeDerivedRule is ValidationBaseRule, IDerivedRuleModule {
         address collector,
         uint256 collectionId,
         bytes calldata data
-    ) external override {
+    ) external payable override {
         _checkEndTimestamp(
             _dataByDerivedRuleByCollectionId[collectionId].endTimestamp
         );

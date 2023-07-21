@@ -12,7 +12,7 @@ interface IDerivedRuleModule {
         address collector,
         uint256 collectionId,
         bytes calldata data
-    ) external;
+    ) external payable;
 
     function processBurn(
         uint256 collectionId,

@@ -92,7 +92,7 @@ contract FeeDerivedRule is
         address collector,
         uint256 collectionId,
         bytes calldata data
-    ) external virtual override onlyAiCooHub {
+    ) external payable virtual override onlyAiCooHub {
         _checkEndTimestamp(
             _dataByDerivedRuleByCollectionId[collectionId].endTimestamp
         );
@@ -187,13 +187,29 @@ contract FeeDerivedRule is
         uint256 treasuryAmount = (amount * treasuryFee) / BPS_MAX;
         uint256 adjustedAmount = amount - treasuryAmount;
 
-        IERC20(currency).safeTransferFrom(collector, recipient, adjustedAmount);
-        if (treasuryAmount > 0)
+        if (address(0x0) == currency) {
+            if (msg.value >= amount) {
+                payable(recipient).transfer(adjustedAmount);
+                payable(treasury).transfer(treasuryAmount);
+                if (msg.value > amount) {
+                    payable(collector).transfer(msg.value - amount);
+                }
+            } else {
+                revert Errors.NotEnoughFunds();
+            }
+        } else {
             IERC20(currency).safeTransferFrom(
                 collector,
-                treasury,
-                treasuryAmount
+                recipient,
+                adjustedAmount
             );
+            if (treasuryAmount > 0)
+                IERC20(currency).safeTransferFrom(
+                    collector,
+                    treasury,
+                    treasuryAmount
+                );
+        }
         ++_dataByDerivedRuleByCollectionId[collectionId].alreadyMint;
     }
 }

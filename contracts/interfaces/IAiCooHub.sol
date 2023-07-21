@@ -18,6 +18,10 @@ interface IAiCooHub {
 
     function setEmergencyAdmin(address newEmergencyAdmin) external;
 
+    function setCreateCollectionFee(uint256 createCollectionFee) external;
+
+    function setCollectionFeeAddress(address feeAddress) external;
+
     function getDerivedNFTImpl() external view returns (address);
 
     function setState(AiCooDataTypes.AiCooState newState) external;
@@ -36,11 +40,11 @@ interface IAiCooHub {
 
     function createNewCollection(
         AiCooDataTypes.CreateNewCollectionData calldata vars
-    ) external returns (uint256);
+    ) external payable returns (uint256);
 
     function commitNewNFTIntoCollection(
         AiCooDataTypes.CreateNewNFTData calldata vars
-    ) external returns (uint256);
+    ) external payable returns (uint256);
 
     function limitBurnTokenByCollectionOwner(
         AiCooDataTypes.LimitBurnToken calldata vars

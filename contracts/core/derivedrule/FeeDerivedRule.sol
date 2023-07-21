@@ -84,7 +84,7 @@ contract FeeDerivedRule is
         address collector,
         uint256 collectionId,
         bytes calldata data
-    ) external virtual override onlyAiCooHub {
+    ) external payable virtual override onlyAiCooHub {
         _checkEndTimestamp(
             _dataByDerivedRuleByCollectionId[collectionId].endTimestamp
         );

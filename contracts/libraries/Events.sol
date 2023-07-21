@@ -26,14 +26,21 @@ library Events {
         uint256 timestamp
     );
 
-    event OpTreeHubProfileIdSet(
+    event MaxRoyaltySet(
         address indexed caller,
-        uint256 indexed prevProfileId,
-        uint256 indexed newProfileId,
+        uint32 indexed prevMaxBaseRoyalty,
+        uint32 indexed newMaxBaseRoyalty,
         uint256 timestamp
     );
 
-    event MaxRoyaltySet(
+    event CollectionFeeAddressSet(
+        address indexed caller,
+        address indexed prevMaxBaseRoyalty,
+        address indexed newMaxBaseRoyalty,
+        uint256 timestamp
+    );
+
+    event CreateCollectionFeeSet(
         address indexed caller,
         uint32 indexed prevMaxBaseRoyalty,
         uint32 indexed newMaxBaseRoyalty,

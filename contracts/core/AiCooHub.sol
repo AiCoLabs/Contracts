@@ -22,6 +22,7 @@ contract AiCooHub is
     uint256 internal constant ONE_WEEK = 7 days;
     uint256 internal constant REVISION = 1;
 
+    address internal immutable MODULE_GLOBALS;
     address internal immutable DERIVED_NFT_IMPL;
 
     modifier onlyGov() {
@@ -29,8 +30,9 @@ contract AiCooHub is
         _;
     }
 
-    constructor(address derivedNFTImpl) {
+    constructor(address derivedNFTImpl, address module_globals) {
         if (derivedNFTImpl == address(0)) revert Errors.InitParamsInvalid();
+        MODULE_GLOBALS = module_globals;
         DERIVED_NFT_IMPL = derivedNFTImpl;
     }
 
@@ -58,6 +60,18 @@ contract AiCooHub is
             newEmergencyAdmin,
             block.timestamp
         );
+    }
+
+    function setCreateCollectionFee(
+        uint256 createCollectionFee
+    ) external override onlyGov {
+        _setCreateCollectionFee(createCollectionFee);
+    }
+
+    function setCollectionFeeAddress(
+        address feeAddress
+    ) external override onlyGov {
+        _setCollectionFeeAddress(feeAddress);
     }
 
     function setMaxRoyalty(uint256 maxRoyalty) external override onlyGov {
@@ -100,15 +114,36 @@ contract AiCooHub is
 
     function createNewCollection(
         AiCooDataTypes.CreateNewCollectionData calldata vars
-    ) external override whenNotPaused returns (uint256) {
+    ) external payable override whenNotPaused returns (uint256) {
+        if (_createCollectionFee > 0) {
+            if (msg.value < _createCollectionFee) {
+                revert Errors.NotEnoughFunds();
+            }
+            payable(_collectionFeeAddress).transfer(_createCollectionFee);
+            if (msg.value > _createCollectionFee) {
+                payable(msg.sender).transfer(msg.value - _createCollectionFee);
+            }
+        }
         return _createCollection(msg.sender, vars);
     }
 
     function commitNewNFTIntoCollection(
         AiCooDataTypes.CreateNewNFTData calldata vars
-    ) external override whenNotPaused returns (uint256) {
+    ) external payable override whenNotPaused returns (uint256) {
         checkParams(msg.sender, vars);
-        return _createNFT(vars, msg.sender);
+
+        uint256 tokenId = IDerivedNFT(
+            _collectionByIdCollInfo[vars.collectionId].derivedNFTAddr
+        ).mint(msg.sender, vars.derivedFrom, vars.nftInfoURI);
+        IDerivedRuleModule(
+            _collectionByIdCollInfo[vars.collectionId].derivedRuletModule
+        ).processDerived{value: msg.value}(
+            msg.sender,
+            vars.collectionId,
+            vars.derivedModuleData
+        );
+        _emitCreatedNFTEvent(tokenId, vars);
+        return tokenId;
     }
 
     function limitBurnTokenByCollectionOwner(
@@ -217,13 +252,17 @@ contract AiCooHub is
     function _createNFT(
         AiCooDataTypes.CreateNewNFTData calldata vars,
         address minter
-    ) internal returns (uint256) {
+    ) public payable returns (uint256) {
         uint256 tokenId = IDerivedNFT(
             _collectionByIdCollInfo[vars.collectionId].derivedNFTAddr
         ).mint(minter, vars.derivedFrom, vars.nftInfoURI);
         IDerivedRuleModule(
             _collectionByIdCollInfo[vars.collectionId].derivedRuletModule
-        ).processDerived(minter, vars.collectionId, vars.derivedModuleData);
+        ).processDerived{value: msg.value}(
+            minter,
+            vars.collectionId,
+            vars.derivedModuleData
+        );
         _emitCreatedNFTEvent(tokenId, vars);
         return tokenId;
     }
