@@ -38,7 +38,7 @@ struct DerivedRuleData {
  *
  * This module works by allowing unlimited collects for a publication at a given price.
  */
-contract FeeDerivedRule is
+contract WhitelistFeeDerivedRule is
     FeeModuleBase,
     ValidationBaseRule,
     IDerivedRuleModule
