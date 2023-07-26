@@ -4,10 +4,12 @@ pragma solidity 0.8.18;
 library AiCooDataTypes {
     enum AiCooState {
         OpenForAll,
+        CreateCollectionPaused,
         Paused
     }
 
     enum CollectionType {
+        MeMe,
         PixArt,
         PhotoGraph,
         Novel,
@@ -18,17 +20,12 @@ library AiCooDataTypes {
 
     struct CreateNewCollectionData {
         uint256 royalty;
-        uint256 addressSalt;
         CollectionType collectionType;
         string collInfoURI;
         string collName;
         string collSymbol;
         address derivedRuleModule;
         bytes derivedRuleModuleInitData;
-        address collectModule;
-        bytes collectModuleInitData;
-        address referenceModule;
-        bytes referenceModuleInitData;
     }
 
     struct CreateNewNFTData {
@@ -37,11 +34,6 @@ library AiCooDataTypes {
         uint256 derivedFrom;
         bytes derivedModuleData;
         bytes32[] proof;
-        bytes referenceModuleData;
-        address collectModule;
-        bytes collectModuleInitData;
-        address referenceModule;
-        bytes referenceModuleInitData;
     }
 
     struct LimitBurnToken {
