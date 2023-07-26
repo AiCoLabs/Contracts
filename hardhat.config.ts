@@ -10,7 +10,7 @@ dotenv.config()
 
 import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-etherscan';
-//import "@openzeppelin/hardhat-upgrades";
+import "@openzeppelin/hardhat-upgrades";
 import '@typechain/hardhat';
 
 const ownerKey = process.env.MUMBAI_OWNER_PRIVATE_KEY || '0x' + '11'.repeat(32)

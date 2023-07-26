@@ -4,7 +4,6 @@ pragma solidity 0.8.18;
 library AiCooDataTypes {
     enum AiCooState {
         OpenForAll,
-        OnlyForLensHandle,
         Paused
     }
 
