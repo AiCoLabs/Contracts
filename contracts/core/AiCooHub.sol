@@ -193,7 +193,9 @@ contract AiCooHub is
         return _balance[owner];
     }
 
-    function getHoldIndexes(address creator) external view returns (uint256[]) {
+    function getHoldIndexes(
+        address creator
+    ) external view returns (uint256[] memory) {
         return _holdIndexes[creator];
     }
 

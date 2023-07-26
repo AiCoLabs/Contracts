@@ -1,10 +1,10 @@
-import { HardhatUserConfig } from "hardhat/config";
+import { HardhatUserConfig } from "hardhat/types";
 import "@nomicfoundation/hardhat-toolbox";
 import * as dotenv from 'dotenv'
 import 'hardhat-deploy'
 
 // Hardhat tasks
-//import './tasks'
+import './tasks'
 
 dotenv.config()
 

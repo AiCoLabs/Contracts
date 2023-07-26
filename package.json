@@ -1,12 +1,12 @@
 {
-  "name": "aicoo",
+  "name": "optree",
   "version": "1.0.0",
-  "description": "An innovative co-created platform empowers individuals to create and retain full control over their content, Can allow others to participate in collaborative creation based on various conditions. The organizational model of creatives similar to Github,Like a tree.",
+  "description": "An innovative co-created platform based on the Lens protocol empowers individuals to create and retain full control over their content, Can allow others to participate in collaborative creation based on various conditions. The organizational model of creatives similar to Github,Like a tree.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "AiCoLabs",
+  "author": "CooLabs",
   "license": "MIT",
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
