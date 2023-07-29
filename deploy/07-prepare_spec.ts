@@ -53,7 +53,7 @@ const deployFn: DeployFunction = async (hre) => {
     )
     await ModuleGlobals.whitelistCurrency(Currency.address,true);
   }else{
-    await ModuleGlobals.whitelistCurrency("0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889",true);
+    await ModuleGlobals.whitelistCurrency("0x6175a8471C2122f778445e7E07A164250a19E661",true);
   }
 }
 
