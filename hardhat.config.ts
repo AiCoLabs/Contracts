@@ -49,7 +49,7 @@ const config: HardhatUserConfig = {
     },
     sepolia: {
       chainId: 11155111,
-      url: process.env.CONTRACTS_RPC_URL || '',
+      url: process.env.SEPOLIA_RPC_URL || '',
       accounts: [ownerKey, goveKey, treasuryKey],
     },
     polygonMain: {
@@ -59,7 +59,7 @@ const config: HardhatUserConfig = {
     },
     ethMain: {
       chainId: 1,
-      url: process.env.CONTRACTS_RPC_URL || '',
+      url: process.env.ETHMAIN_RPC_URL || '',
       accounts: [ownerKey, goveKey, treasuryKey],
     },
   },

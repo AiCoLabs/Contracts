@@ -75,6 +75,20 @@ contract RoyaltySplitter is Context {
         return _totalReleased;
     }
 
+    function totalReceivedEthRoyalty() public view returns (uint256) {
+        uint256 _totalReceivedEthRoyalty = address(this).balance +
+            totalReleased();
+        return _totalReceivedEthRoyalty;
+    }
+
+    function totalReceivedErc20Royalty(
+        IERC20 token
+    ) public view returns (uint256) {
+        uint256 _totalReceivedErc20Royalty = token.balanceOf(address(this)) +
+            totalReleased(token);
+        return _totalReceivedErc20Royalty;
+    }
+
     /**
      * @dev Getter for the total amount of `token` already released. `token` should be the address of an IERC20
      * contract.
