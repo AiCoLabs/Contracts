@@ -187,7 +187,7 @@ contract WhitelistFeeDerivedRule is
         uint256 treasuryAmount = (amount * treasuryFee) / BPS_MAX;
         uint256 adjustedAmount = amount - treasuryAmount;
 
-        if (address(0x0) == currency) {
+        if (address(0x1) == currency) {
             if (msg.value >= amount) {
                 payable(recipient).transfer(adjustedAmount);
                 payable(treasury).transfer(treasuryAmount);
