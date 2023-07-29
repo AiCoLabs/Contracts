@@ -6,7 +6,6 @@ import {
 } from '../src/deploy-utils'
 
 const deployFn: DeployFunction = async (hre) => {
-  //const { deployer,  governance} = await hre.getNamedAccounts()
 
   if((await isHardhatNode(hre)))
   {

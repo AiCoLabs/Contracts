@@ -43,26 +43,26 @@ export const deployAndVerifyAndThen = async ({
       // Verification sometimes fails, even when the contract is correctly deployed and eventually
       // verified. Possibly due to a race condition. We don't want to halt the whole deployment
       // process just because that happens.
-      try {
-        console.log('Verifying on Etherscan...')
-        await hre.run('verify:verify', {
-          address: result.address,
-          constructorArguments: args,
-        })
-        console.log('Successfully verified on Etherscan')
-      } catch (error) {
-        console.log('Error when verifying bytecode on Etherscan:')
-        console.log(error)
-      }
+      // try {
+      //   console.log('Verifying on Etherscan...')
+      //   await hre.run('verify:verify', {
+      //     address: result.address,
+      //     constructorArguments: args,
+      //   })
+      //   console.log('Successfully verified on Etherscan')
+      // } catch (error) {
+      //   console.log('Error when verifying bytecode on Etherscan:')
+      //   console.log(error)
+      // }
 
-      try {
-        console.log('Verifying on Sourcify...')
-        await hre.run('sourcify')
-        console.log('Successfully verified on Sourcify')
-      } catch (error) {
-        console.log('Error when verifying bytecode on Sourcify:')
-        console.log(error)
-      }
+      // try {
+      //   console.log('Verifying on Sourcify...')
+      //   await hre.run('sourcify')
+      //   console.log('Successfully verified on Sourcify')
+      // } catch (error) {
+      //   console.log('Error when verifying bytecode on Sourcify:')
+      //   console.log(error)
+      // }
     }
     if (postDeployAction) {
       const signer = hre.ethers.provider.getSigner(deployer)

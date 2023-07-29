@@ -1,6 +1,5 @@
 /* Imports: Internal */
 import { DeployFunction } from 'hardhat-deploy/dist/types'
-const { ethers } = require("hardhat");
 import {
   getContractFromArtifact,
   isHardhatNode,
@@ -45,6 +44,8 @@ const deployFn: DeployFunction = async (hre) => {
       signerOrProvider: governance,
     }
   )
+  const ETH_ADDRESS = '0x0000000000000000000000000000000000000001';
+  await ModuleGlobals.whitelistCurrency(ETH_ADDRESS,true);
   if((await isHardhatNode(hre))){
     const Currency = await getContractFromArtifact(
       hre,

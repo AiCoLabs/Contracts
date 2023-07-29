@@ -5,7 +5,6 @@ import {
   getContractFromArtifact,
   isHardhatNode,
 } from '../src/deploy-utils'
-import { hexlify, keccak256, RLP } from 'ethers/lib/utils';
 
 const deployFn: DeployFunction = async (hre) => {
 
