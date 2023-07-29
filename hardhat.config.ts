@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv'
 import 'hardhat-deploy'
 
 // Hardhat tasks
-import './tasks'
+//import './tasks'
 
 dotenv.config()
 

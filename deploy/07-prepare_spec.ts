@@ -36,7 +36,7 @@ const deployFn: DeployFunction = async (hre) => {
   const ROYALTY_PERCENTAGE = 10;
   await AiCooHubProxy.setMaxRoyalty(MAX_ROYALTY);
   await AiCooHubProxy.setAiCooHubRoyalty(governance, ROYALTY_PERCENTAGE);
-  await AiCooHubProxy.setState(1);
+  await AiCooHubProxy.setState(0);
 
   const ModuleGlobals = await getContractFromArtifact(
     hre,
