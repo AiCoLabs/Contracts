@@ -13,10 +13,9 @@ import '@nomiclabs/hardhat-etherscan';
 import "@openzeppelin/hardhat-upgrades";
 import '@typechain/hardhat';
 
-const ownerKey = process.env.MUMBAI_OWNER_PRIVATE_KEY || '0x' + '11'.repeat(32)
-const goveKey = process.env.MUMBAI_GOVE_PRIVATE_KEY || '0x' + '11'.repeat(32)
+const ownerKey = process.env.OWNER_PRIVATE_KEY || '0x' + '11'.repeat(32)
+const goveKey = process.env.GOVE_PRIVATE_KEY || '0x' + '11'.repeat(32)
 const treasuryKey = process.env.TREASURY_PRIVATE_KEY || '0x' + '11'.repeat(32)
-const optreeUser = process.env.OPTREE_USER_KEY|| '0x' + '11'.repeat(32)
 
 const TRACK_GAS = process.env.TRACK_GAS === 'true';
 const BLOCK_EXPLORER_KEY = process.env.BLOCK_EXPLORER_KEY || '';
@@ -45,7 +44,7 @@ const config: HardhatUserConfig = {
     mumbai: {
       chainId: 80001,
       url: process.env.MUMBAI_RPC_URL || '',
-      accounts: [ownerKey, goveKey, treasuryKey, optreeUser],
+      accounts: [ownerKey, goveKey, treasuryKey],
       gas: 16000000,
     },
     sepolia: {
@@ -76,6 +75,9 @@ const config: HardhatUserConfig = {
     },
     governance: {
       default: 1,
+    },
+    treasury: {
+      default: 2,
     }
   },
 };

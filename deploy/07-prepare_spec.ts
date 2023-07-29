@@ -7,7 +7,7 @@ import {
 
 const deployFn: DeployFunction = async (hre) => {
 
-  const {governance} = await hre.getNamedAccounts()
+  const {governance, treasury} = await hre.getNamedAccounts()
 
   const FreeDerivedRule = await getContractFromArtifact(
     hre,
@@ -32,9 +32,9 @@ const deployFn: DeployFunction = async (hre) => {
   await AiCooHubProxy.whitelistDerviedModule(FeeDerivedRule.address, true);
 
   const MAX_ROYALTY = 1000;
-  const ROYALTY_PERCENTAGE = 10;
+  const ROYALTY_PERCENTAGE = 1000;
   await AiCooHubProxy.setMaxRoyalty(MAX_ROYALTY);
-  await AiCooHubProxy.setAiCooHubRoyalty(governance, ROYALTY_PERCENTAGE);
+  await AiCooHubProxy.setAiCooHubRoyalty(treasury, ROYALTY_PERCENTAGE);
   await AiCooHubProxy.setState(0);
 
   const ModuleGlobals = await getContractFromArtifact(
