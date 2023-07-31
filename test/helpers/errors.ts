@@ -18,5 +18,6 @@ export const ERRORS = {
     MINT_LIMIT_EXCEEDED: "MintLimitExceeded",
     MODULE_DATA_MISMATCH: "ModuleDataMismatch",
     NOT_ENOUGH_FUNDS: 'NotEnoughFunds',
+    CAN_NOT_DELETE_ZERO_NFT: 'CanNotDeleteZeroNFT',
   };
   

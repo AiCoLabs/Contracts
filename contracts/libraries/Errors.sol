@@ -35,4 +35,5 @@ library Errors {
     error NotInWhiteList();
 
     error NotEnoughFunds();
+    error CanNotDeleteZeroNFT();
 }

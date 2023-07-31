@@ -152,6 +152,7 @@ contract AiCooHub is
         _validateNotPaused();
         if (_collectionByIdCollInfo[vars.collectionId].creator != msg.sender)
             revert Errors.NotCollectionOwner();
+        if (vars.tokenId == 0) revert Errors.CanNotDeleteZeroNFT();
         if (
             block.timestamp >
             IDerivedNFT(
