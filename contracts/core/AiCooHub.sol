@@ -255,24 +255,6 @@ contract AiCooHub is
         }
     }
 
-    function _createNFT(
-        AiCooDataTypes.CreateNewNFTData calldata vars,
-        address minter
-    ) public payable returns (uint256) {
-        uint256 tokenId = IDerivedNFT(
-            _collectionByIdCollInfo[vars.collectionId].derivedNFTAddr
-        ).mint(minter, vars.derivedFrom, vars.nftInfoURI);
-        IDerivedRuleModule(
-            _collectionByIdCollInfo[vars.collectionId].derivedRuletModule
-        ).processDerived{value: msg.value}(
-            minter,
-            vars.collectionId,
-            vars.derivedModuleData
-        );
-        _emitCreatedNFTEvent(tokenId, vars);
-        return tokenId;
-    }
-
     function _setStateVariable(
         uint256 colltionId,
         address creator,

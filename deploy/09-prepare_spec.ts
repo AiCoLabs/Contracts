@@ -19,6 +19,16 @@ const deployFn: DeployFunction = async (hre) => {
     "FeeDerivedRule"
   )
 
+  const WhitelistFreeDerivedRule = await getContractFromArtifact(
+    hre,
+    "WhitelistFreeDerivedRule"
+  )
+
+  const WhitelistFeeDerivedRule = await getContractFromArtifact(
+    hre,
+    "WhitelistFeeDerivedRule"
+  )
+
   const AiCooHubProxy = await getContractFromArtifact(
     hre,
     "AiCooHubProxy",
@@ -30,6 +40,8 @@ const deployFn: DeployFunction = async (hre) => {
 
   await AiCooHubProxy.whitelistDerviedModule(FreeDerivedRule.address, true);
   await AiCooHubProxy.whitelistDerviedModule(FeeDerivedRule.address, true);
+  await AiCooHubProxy.whitelistDerviedModule(WhitelistFreeDerivedRule.address, true);
+  await AiCooHubProxy.whitelistDerviedModule(WhitelistFeeDerivedRule.address, true);
 
   const MAX_ROYALTY = 1000;
   const ROYALTY_PERCENTAGE = 1000;
