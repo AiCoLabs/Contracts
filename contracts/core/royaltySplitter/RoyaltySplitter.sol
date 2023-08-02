@@ -226,7 +226,7 @@ contract RoyaltySplitter is Context {
      * @param account The address of the payee to add.
      * @param shares_ The number of shares owned by the payee.
      */
-    function _addPayee(address account, uint256 shares_) private {
+    function _addPayee(address account, uint256 shares_) internal {
         require(
             account != address(0),
             "PaymentSplitter: account is the zero address"

@@ -64,6 +64,7 @@ contract DerivedNFT is RoyaltySplitter, DerivedNFTBase, Ownable, IDerivedNFT {
             uint256 tokenId = _tokenIdCounter++;
             _mint(to, tokenId);
             _setTokenInfo(tokenId, derivedfrom, tokenURI, to);
+            _addPayee(to, 1);
             return tokenId;
         }
     }
