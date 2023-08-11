@@ -85,6 +85,7 @@ library Events {
         uint256 indexed tokenId,
         uint256 indexed collectionId,
         uint256 derivedFrom,
+        address creator,
         string nftInfoURI
     );
 

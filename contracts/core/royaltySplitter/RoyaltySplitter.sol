@@ -129,6 +129,10 @@ contract RoyaltySplitter is Context {
         return _payees[index];
     }
 
+    function creatorAmount() public view returns (uint256) {
+        return _payees.length;
+    }
+
     /**
      * @dev Getter for the amount of payee's releasable Ether.
      */

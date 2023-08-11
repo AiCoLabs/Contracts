@@ -380,6 +380,7 @@ contract AiCooHub is
             tokenId,
             vars.collectionId,
             vars.derivedFrom,
+            msg.sender,
             vars.nftInfoURI
         );
     }
