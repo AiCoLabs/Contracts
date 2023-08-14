@@ -10,11 +10,12 @@ library AiCooDataTypes {
 
     enum CollectionType {
         MeMe,
-        PixArt,
+        Art,
+        PFPs,
         PhotoGraph,
-        Novel,
+        Music,
         Video,
-        Media,
+        Novel,
         Model
     }
 
