@@ -52,10 +52,17 @@ const config: HardhatUserConfig = {
       url: process.env.SEPOLIA_RPC_URL || '',
       accounts: [ownerKey, goveKey, treasuryKey],
     },
-    polygonMain: {
-      chainId: 137,
-      url: process.env.POLYGON_MAINNET_RPC_URL || '',
+    baseGoerli: {
+      chainId: 84531,
+      url: process.env.BASE_TEST_RPC_URL || '',
       accounts: [ownerKey, goveKey, treasuryKey],
+      gasPrice: 1000000000,
+    },
+    baseMain: {
+      chainId: 8453,
+      url: process.env.BASE_MAIN_RPC_URL || '',
+      accounts: [ownerKey, goveKey, treasuryKey],
+      gasPrice: 1000000000,
     },
     ethMain: {
       chainId: 1,
