@@ -145,7 +145,7 @@ contract RoyaltySplitter is Context {
      * @dev Getter for the amount of payee's releasable `token` tokens. `token` should be the address of an
      * IERC20 contract.
      */
-    function releasable(
+    function releasableERC20(
         IERC20 token,
         address account
     ) public view returns (uint256) {
@@ -182,10 +182,10 @@ contract RoyaltySplitter is Context {
      * percentage of the total shares and their previous withdrawals. `token` must be the address of an IERC20
      * contract.
      */
-    function release(IERC20 token, address account) public virtual {
+    function releaseERC20(IERC20 token, address account) public virtual {
         require(_shares[account] > 0, "PaymentSplitter: account has no shares");
 
-        uint256 payment = releasable(token, account);
+        uint256 payment = releasableERC20(token, account);
 
         require(payment != 0, "PaymentSplitter: account is not due payment");
 
@@ -214,12 +214,15 @@ contract RoyaltySplitter is Context {
         if (account == _aiCooHubProtocolFeeAddress) {
             pendingAmount =
                 (totalReceived * _aiCooFixedShare) /
-                (_aiCooFixedShare + BPS_MAX) -
+                BPS_MAX -
                 alreadyReleased;
         } else {
+            uint256 leftAmount = totalReceived -
+                (totalReceived * _aiCooFixedShare) /
+                BPS_MAX;
             pendingAmount =
-                (totalReceived * _shares[account] * BPS_MAX) /
-                (_totalShares * (_aiCooFixedShare + BPS_MAX)) -
+                (leftAmount * _shares[account]) /
+                _totalShares -
                 alreadyReleased;
         }
         return pendingAmount;
