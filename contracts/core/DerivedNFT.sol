@@ -92,6 +92,8 @@ contract DerivedNFT is RoyaltySplitter, DerivedNFTBase, Ownable, IDerivedNFT {
 
     function burnByCollectionOwner(uint256 tokenId) external {
         if (msg.sender != AICOOHUB) revert Errors.NotAiCooHub();
+        if (ownerOf(tokenId) != _getTokenCreator(tokenId))
+            revert Errors.AlreadyTrade();
         _burn(tokenId);
     }
 

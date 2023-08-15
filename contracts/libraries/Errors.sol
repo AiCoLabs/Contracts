@@ -17,6 +17,7 @@ library Errors {
     error SignatureExpired();
     error SignatureInvalid();
     error NotAiCooHub();
+    error AlreadyTrade();
     error RoyaltyTooHigh();
     error DerivedRuleModuleNotWhitelisted();
     error FollowInvalid();
